@@ -1,6 +1,6 @@
 name: Metrics
 on:
-  schedule: [{ cron: "30 * * * *" }] # Shifted to 30 past the hour to avoid heavy traffic congestion
+  schedule: [{ cron: "30 * * * *" }]
   workflow_dispatch:
   push: { branches: ["main"] }
 
@@ -21,30 +21,26 @@ jobs:
           template: classic
           config_timezone: Europe/Berlin
           
-          # Core Sections Included
-          base: header, activity, community, repositories
+          # Enable Action Debug Mode
+          debug: yes
           
-          # Plugin: Achievements
+          # Core Configuration
+          base: header, activity, community, repositories
+          repositories_affiliations: owner
+          
+          # Plugins
           plugin_achievements: yes
-          plugin_achievements_threshold: B
+          plugin_achievements_threshold: C
           plugin_achievements_secrets: yes
           plugin_achievements_display: compact
           plugin_achievements_limit: 0
-          
-          # Plugin: Lines of Code
           plugin_lines: yes
-          
-          # Plugin: ISO Calendar
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
-          
-          # Plugin: Coding Habits
           plugin_habits: yes
-          plugin_habits_from: 200
+          plugin_habits_from: 50
           plugin_habits_days: 14
           plugin_habits_charts: yes
           plugin_habits_trim: yes
-          
-          # Plugin: Follow-up & Languages
           plugin_followup: yes
           plugin_languages: yes
